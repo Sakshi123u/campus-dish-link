@@ -16,6 +16,11 @@ import { Route as MenuRouteImport } from './routes/menu'
 import { Route as MyOrdersRouteImport } from './routes/my-orders'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as TrackRouteImport } from './routes/track'
+import { Route as StallIndexRouteImport } from './routes/stall.index'
+import { Route as StallCompletedRouteImport } from './routes/stall.completed'
+import { Route as StallNewRouteImport } from './routes/stall.new'
+import { Route as StallPreparingRouteImport } from './routes/stall.preparing'
+import { Route as StallReadyRouteImport } from './routes/stall.ready'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -52,6 +57,31 @@ const TrackRoute = TrackRouteImport.update({
   path: '/track',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StallIndexRoute = StallIndexRouteImport.update({
+  id: '/stall/',
+  path: '/stall/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StallCompletedRoute = StallCompletedRouteImport.update({
+  id: '/stall/completed',
+  path: '/stall/completed',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StallNewRoute = StallNewRouteImport.update({
+  id: '/stall/new',
+  path: '/stall/new',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StallPreparingRoute = StallPreparingRouteImport.update({
+  id: '/stall/preparing',
+  path: '/stall/preparing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StallReadyRoute = StallReadyRouteImport.update({
+  id: '/stall/ready',
+  path: '/stall/ready',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -61,6 +91,11 @@ export interface FileRoutesByFullPath {
   '/my-orders': typeof MyOrdersRoute
   '/profile': typeof ProfileRoute
   '/track': typeof TrackRoute
+  '/stall/completed': typeof StallCompletedRoute
+  '/stall/new': typeof StallNewRoute
+  '/stall/preparing': typeof StallPreparingRoute
+  '/stall/ready': typeof StallReadyRoute
+  '/stall/': typeof StallIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -70,6 +105,11 @@ export interface FileRoutesByTo {
   '/my-orders': typeof MyOrdersRoute
   '/profile': typeof ProfileRoute
   '/track': typeof TrackRoute
+  '/stall/completed': typeof StallCompletedRoute
+  '/stall/new': typeof StallNewRoute
+  '/stall/preparing': typeof StallPreparingRoute
+  '/stall/ready': typeof StallReadyRoute
+  '/stall': typeof StallIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -80,13 +120,41 @@ export interface FileRoutesById {
   '/my-orders': typeof MyOrdersRoute
   '/profile': typeof ProfileRoute
   '/track': typeof TrackRoute
+  '/stall/completed': typeof StallCompletedRoute
+  '/stall/new': typeof StallNewRoute
+  '/stall/preparing': typeof StallPreparingRoute
+  '/stall/ready': typeof StallReadyRoute
+  '/stall/': typeof StallIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/cart' | '/home' | '/menu' | '/my-orders' | '/profile' | '/track'
+    | '/'
+    | '/cart'
+    | '/home'
+    | '/menu'
+    | '/my-orders'
+    | '/profile'
+    | '/track'
+    | '/stall/completed'
+    | '/stall/new'
+    | '/stall/preparing'
+    | '/stall/ready'
+    | '/stall/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/cart' | '/home' | '/menu' | '/my-orders' | '/profile' | '/track'
+  to:
+    | '/'
+    | '/cart'
+    | '/home'
+    | '/menu'
+    | '/my-orders'
+    | '/profile'
+    | '/track'
+    | '/stall/completed'
+    | '/stall/new'
+    | '/stall/preparing'
+    | '/stall/ready'
+    | '/stall'
   id:
     | '__root__'
     | '/'
@@ -96,6 +164,11 @@ export interface FileRouteTypes {
     | '/my-orders'
     | '/profile'
     | '/track'
+    | '/stall/completed'
+    | '/stall/new'
+    | '/stall/preparing'
+    | '/stall/ready'
+    | '/stall/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -106,6 +179,11 @@ export interface RootRouteChildren {
   MyOrdersRoute: typeof MyOrdersRoute
   ProfileRoute: typeof ProfileRoute
   TrackRoute: typeof TrackRoute
+  StallCompletedRoute: typeof StallCompletedRoute
+  StallNewRoute: typeof StallNewRoute
+  StallPreparingRoute: typeof StallPreparingRoute
+  StallReadyRoute: typeof StallReadyRoute
+  StallIndexRoute: typeof StallIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -159,6 +237,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TrackRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/stall/': {
+      id: '/stall/'
+      path: '/stall'
+      fullPath: '/stall/'
+      preLoaderRoute: typeof StallIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/stall/completed': {
+      id: '/stall/completed'
+      path: '/stall/completed'
+      fullPath: '/stall/completed'
+      preLoaderRoute: typeof StallCompletedRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/stall/new': {
+      id: '/stall/new'
+      path: '/stall/new'
+      fullPath: '/stall/new'
+      preLoaderRoute: typeof StallNewRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/stall/preparing': {
+      id: '/stall/preparing'
+      path: '/stall/preparing'
+      fullPath: '/stall/preparing'
+      preLoaderRoute: typeof StallPreparingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/stall/ready': {
+      id: '/stall/ready'
+      path: '/stall/ready'
+      fullPath: '/stall/ready'
+      preLoaderRoute: typeof StallReadyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -170,6 +283,11 @@ const rootRouteChildren: RootRouteChildren = {
   MyOrdersRoute: MyOrdersRoute,
   ProfileRoute: ProfileRoute,
   TrackRoute: TrackRoute,
+  StallCompletedRoute: StallCompletedRoute,
+  StallNewRoute: StallNewRoute,
+  StallPreparingRoute: StallPreparingRoute,
+  StallReadyRoute: StallReadyRoute,
+  StallIndexRoute: StallIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
