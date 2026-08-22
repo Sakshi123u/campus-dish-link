@@ -16,6 +16,11 @@ import { Route as MenuRouteImport } from './routes/menu'
 import { Route as MyOrdersRouteImport } from './routes/my-orders'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as TrackRouteImport } from './routes/track'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
+import { Route as AdminMonitorRouteImport } from './routes/admin.monitor'
+import { Route as AdminOrdersRouteImport } from './routes/admin.orders'
+import { Route as AdminP2pRouteImport } from './routes/admin.p2p'
+import { Route as AdminStallsRouteImport } from './routes/admin.stalls'
 import { Route as StallIndexRouteImport } from './routes/stall.index'
 import { Route as StallCompletedRouteImport } from './routes/stall.completed'
 import { Route as StallNewRouteImport } from './routes/stall.new'
@@ -57,6 +62,31 @@ const TrackRoute = TrackRouteImport.update({
   path: '/track',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminMonitorRoute = AdminMonitorRouteImport.update({
+  id: '/admin/monitor',
+  path: '/admin/monitor',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminOrdersRoute = AdminOrdersRouteImport.update({
+  id: '/admin/orders',
+  path: '/admin/orders',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminP2pRoute = AdminP2pRouteImport.update({
+  id: '/admin/p2p',
+  path: '/admin/p2p',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminStallsRoute = AdminStallsRouteImport.update({
+  id: '/admin/stalls',
+  path: '/admin/stalls',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StallIndexRoute = StallIndexRouteImport.update({
   id: '/stall/',
   path: '/stall/',
@@ -91,10 +121,15 @@ export interface FileRoutesByFullPath {
   '/my-orders': typeof MyOrdersRoute
   '/profile': typeof ProfileRoute
   '/track': typeof TrackRoute
+  '/admin/monitor': typeof AdminMonitorRoute
+  '/admin/orders': typeof AdminOrdersRoute
+  '/admin/p2p': typeof AdminP2pRoute
+  '/admin/stalls': typeof AdminStallsRoute
   '/stall/completed': typeof StallCompletedRoute
   '/stall/new': typeof StallNewRoute
   '/stall/preparing': typeof StallPreparingRoute
   '/stall/ready': typeof StallReadyRoute
+  '/admin/': typeof AdminIndexRoute
   '/stall/': typeof StallIndexRoute
 }
 export interface FileRoutesByTo {
@@ -105,10 +140,15 @@ export interface FileRoutesByTo {
   '/my-orders': typeof MyOrdersRoute
   '/profile': typeof ProfileRoute
   '/track': typeof TrackRoute
+  '/admin/monitor': typeof AdminMonitorRoute
+  '/admin/orders': typeof AdminOrdersRoute
+  '/admin/p2p': typeof AdminP2pRoute
+  '/admin/stalls': typeof AdminStallsRoute
   '/stall/completed': typeof StallCompletedRoute
   '/stall/new': typeof StallNewRoute
   '/stall/preparing': typeof StallPreparingRoute
   '/stall/ready': typeof StallReadyRoute
+  '/admin': typeof AdminIndexRoute
   '/stall': typeof StallIndexRoute
 }
 export interface FileRoutesById {
@@ -120,10 +160,15 @@ export interface FileRoutesById {
   '/my-orders': typeof MyOrdersRoute
   '/profile': typeof ProfileRoute
   '/track': typeof TrackRoute
+  '/admin/monitor': typeof AdminMonitorRoute
+  '/admin/orders': typeof AdminOrdersRoute
+  '/admin/p2p': typeof AdminP2pRoute
+  '/admin/stalls': typeof AdminStallsRoute
   '/stall/completed': typeof StallCompletedRoute
   '/stall/new': typeof StallNewRoute
   '/stall/preparing': typeof StallPreparingRoute
   '/stall/ready': typeof StallReadyRoute
+  '/admin/': typeof AdminIndexRoute
   '/stall/': typeof StallIndexRoute
 }
 export interface FileRouteTypes {
@@ -136,10 +181,15 @@ export interface FileRouteTypes {
     | '/my-orders'
     | '/profile'
     | '/track'
+    | '/admin/monitor'
+    | '/admin/orders'
+    | '/admin/p2p'
+    | '/admin/stalls'
     | '/stall/completed'
     | '/stall/new'
     | '/stall/preparing'
     | '/stall/ready'
+    | '/admin/'
     | '/stall/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -150,10 +200,15 @@ export interface FileRouteTypes {
     | '/my-orders'
     | '/profile'
     | '/track'
+    | '/admin/monitor'
+    | '/admin/orders'
+    | '/admin/p2p'
+    | '/admin/stalls'
     | '/stall/completed'
     | '/stall/new'
     | '/stall/preparing'
     | '/stall/ready'
+    | '/admin'
     | '/stall'
   id:
     | '__root__'
@@ -164,10 +219,15 @@ export interface FileRouteTypes {
     | '/my-orders'
     | '/profile'
     | '/track'
+    | '/admin/monitor'
+    | '/admin/orders'
+    | '/admin/p2p'
+    | '/admin/stalls'
     | '/stall/completed'
     | '/stall/new'
     | '/stall/preparing'
     | '/stall/ready'
+    | '/admin/'
     | '/stall/'
   fileRoutesById: FileRoutesById
 }
@@ -179,10 +239,15 @@ export interface RootRouteChildren {
   MyOrdersRoute: typeof MyOrdersRoute
   ProfileRoute: typeof ProfileRoute
   TrackRoute: typeof TrackRoute
+  AdminMonitorRoute: typeof AdminMonitorRoute
+  AdminOrdersRoute: typeof AdminOrdersRoute
+  AdminP2pRoute: typeof AdminP2pRoute
+  AdminStallsRoute: typeof AdminStallsRoute
   StallCompletedRoute: typeof StallCompletedRoute
   StallNewRoute: typeof StallNewRoute
   StallPreparingRoute: typeof StallPreparingRoute
   StallReadyRoute: typeof StallReadyRoute
+  AdminIndexRoute: typeof AdminIndexRoute
   StallIndexRoute: typeof StallIndexRoute
 }
 
@@ -237,6 +302,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TrackRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/monitor': {
+      id: '/admin/monitor'
+      path: '/admin/monitor'
+      fullPath: '/admin/monitor'
+      preLoaderRoute: typeof AdminMonitorRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/orders': {
+      id: '/admin/orders'
+      path: '/admin/orders'
+      fullPath: '/admin/orders'
+      preLoaderRoute: typeof AdminOrdersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/p2p': {
+      id: '/admin/p2p'
+      path: '/admin/p2p'
+      fullPath: '/admin/p2p'
+      preLoaderRoute: typeof AdminP2pRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/stalls': {
+      id: '/admin/stalls'
+      path: '/admin/stalls'
+      fullPath: '/admin/stalls'
+      preLoaderRoute: typeof AdminStallsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/stall/': {
       id: '/stall/'
       path: '/stall'
@@ -283,10 +383,15 @@ const rootRouteChildren: RootRouteChildren = {
   MyOrdersRoute: MyOrdersRoute,
   ProfileRoute: ProfileRoute,
   TrackRoute: TrackRoute,
+  AdminMonitorRoute: AdminMonitorRoute,
+  AdminOrdersRoute: AdminOrdersRoute,
+  AdminP2pRoute: AdminP2pRoute,
+  AdminStallsRoute: AdminStallsRoute,
   StallCompletedRoute: StallCompletedRoute,
   StallNewRoute: StallNewRoute,
   StallPreparingRoute: StallPreparingRoute,
   StallReadyRoute: StallReadyRoute,
+  AdminIndexRoute: AdminIndexRoute,
   StallIndexRoute: StallIndexRoute,
 }
 export const routeTree = rootRouteImport
