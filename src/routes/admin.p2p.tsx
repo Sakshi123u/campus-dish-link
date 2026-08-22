@@ -53,9 +53,29 @@ function P2PPage() {
   const send = (e: React.FormEvent) => {
     e.preventDefault();
     if (!text.trim() || from === to) return;
-    setMessages((m) => [...m, { from, to, text: text.trim() }]);
+    const sender = from;
+    const peer = to;
+    const body = text.trim();
+    setMessages((m) => [...m, { from: sender, to: peer, text: body }]);
     setText("");
+    // peer node acknowledges automatically (simulated remote stall response)
+    window.setTimeout(() => {
+      setMessages((m) => [
+        ...m,
+        {
+          from: peer,
+          to: sender,
+          text: `ACK from ${peer}: received "${body}" — will confirm shortly.`,
+        },
+      ]);
+    }, 1200);
   };
+
+  const swap = () => {
+    setFrom(to);
+    setTo(from);
+  };
+
 
   // conversation filter: show messages between the selected pair (either direction)
   const thread = messages.filter(
