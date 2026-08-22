@@ -25,7 +25,7 @@ export const Route = createFileRoute("/admin/")({
       { property: "og:description", content: "Total orders, pending orders, revenue and stall distribution." },
     ],
   }),
-  component: AdminOverview;
+  component: AdminOverview,
 });
 
 const COLORS = ["var(--chart-1)", "var(--chart-2)", "var(--chart-3)", "var(--chart-4)", "var(--chart-5)"];
