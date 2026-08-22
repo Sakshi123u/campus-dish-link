@@ -37,6 +37,8 @@ const STAFF_NAV: NavItem[] = [
   { label: "Preparing", to: "/stall/preparing", icon: ChefHat },
   { label: "Ready", to: "/stall/ready", icon: CheckCircle2 },
   { label: "Completed", to: "/stall/completed", icon: Archive },
+  { label: "Messages", to: "/stall/p2p", icon: MessageSquare },
+
 ];
 
 const ADMIN_NAV: NavItem[] = [
