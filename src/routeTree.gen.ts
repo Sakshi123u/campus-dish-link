@@ -24,6 +24,7 @@ import { Route as AdminStallsRouteImport } from './routes/admin.stalls'
 import { Route as StallIndexRouteImport } from './routes/stall.index'
 import { Route as StallCompletedRouteImport } from './routes/stall.completed'
 import { Route as StallNewRouteImport } from './routes/stall.new'
+import { Route as StallP2pRouteImport } from './routes/stall.p2p'
 import { Route as StallPreparingRouteImport } from './routes/stall.preparing'
 import { Route as StallReadyRouteImport } from './routes/stall.ready'
 
@@ -102,6 +103,11 @@ const StallNewRoute = StallNewRouteImport.update({
   path: '/stall/new',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StallP2pRoute = StallP2pRouteImport.update({
+  id: '/stall/p2p',
+  path: '/stall/p2p',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StallPreparingRoute = StallPreparingRouteImport.update({
   id: '/stall/preparing',
   path: '/stall/preparing',
@@ -127,6 +133,7 @@ export interface FileRoutesByFullPath {
   '/admin/stalls': typeof AdminStallsRoute
   '/stall/completed': typeof StallCompletedRoute
   '/stall/new': typeof StallNewRoute
+  '/stall/p2p': typeof StallP2pRoute
   '/stall/preparing': typeof StallPreparingRoute
   '/stall/ready': typeof StallReadyRoute
   '/admin/': typeof AdminIndexRoute
@@ -146,6 +153,7 @@ export interface FileRoutesByTo {
   '/admin/stalls': typeof AdminStallsRoute
   '/stall/completed': typeof StallCompletedRoute
   '/stall/new': typeof StallNewRoute
+  '/stall/p2p': typeof StallP2pRoute
   '/stall/preparing': typeof StallPreparingRoute
   '/stall/ready': typeof StallReadyRoute
   '/admin': typeof AdminIndexRoute
@@ -166,6 +174,7 @@ export interface FileRoutesById {
   '/admin/stalls': typeof AdminStallsRoute
   '/stall/completed': typeof StallCompletedRoute
   '/stall/new': typeof StallNewRoute
+  '/stall/p2p': typeof StallP2pRoute
   '/stall/preparing': typeof StallPreparingRoute
   '/stall/ready': typeof StallReadyRoute
   '/admin/': typeof AdminIndexRoute
@@ -187,6 +196,7 @@ export interface FileRouteTypes {
     | '/admin/stalls'
     | '/stall/completed'
     | '/stall/new'
+    | '/stall/p2p'
     | '/stall/preparing'
     | '/stall/ready'
     | '/admin/'
@@ -206,6 +216,7 @@ export interface FileRouteTypes {
     | '/admin/stalls'
     | '/stall/completed'
     | '/stall/new'
+    | '/stall/p2p'
     | '/stall/preparing'
     | '/stall/ready'
     | '/admin'
@@ -225,6 +236,7 @@ export interface FileRouteTypes {
     | '/admin/stalls'
     | '/stall/completed'
     | '/stall/new'
+    | '/stall/p2p'
     | '/stall/preparing'
     | '/stall/ready'
     | '/admin/'
@@ -245,6 +257,7 @@ export interface RootRouteChildren {
   AdminStallsRoute: typeof AdminStallsRoute
   StallCompletedRoute: typeof StallCompletedRoute
   StallNewRoute: typeof StallNewRoute
+  StallP2pRoute: typeof StallP2pRoute
   StallPreparingRoute: typeof StallPreparingRoute
   StallReadyRoute: typeof StallReadyRoute
   AdminIndexRoute: typeof AdminIndexRoute
@@ -358,6 +371,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StallNewRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/stall/p2p': {
+      id: '/stall/p2p'
+      path: '/stall/p2p'
+      fullPath: '/stall/p2p'
+      preLoaderRoute: typeof StallP2pRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/stall/preparing': {
       id: '/stall/preparing'
       path: '/stall/preparing'
@@ -389,6 +409,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminStallsRoute: AdminStallsRoute,
   StallCompletedRoute: StallCompletedRoute,
   StallNewRoute: StallNewRoute,
+  StallP2pRoute: StallP2pRoute,
   StallPreparingRoute: StallPreparingRoute,
   StallReadyRoute: StallReadyRoute,
   AdminIndexRoute: AdminIndexRoute,
