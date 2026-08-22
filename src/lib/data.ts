@@ -6,6 +6,14 @@ import coldCoffee from "@/assets/cold-coffee.jpg";
 import icedTea from "@/assets/iced-tea.jpg";
 import fries from "@/assets/fries.jpg";
 import brownie from "@/assets/brownie.jpg";
+import dosa from "@/assets/dosa.jpg";
+import samosa from "@/assets/samosa.jpg";
+import pasta from "@/assets/pasta.jpg";
+import chocoShake from "@/assets/choco-shake.jpg";
+import gulabJamun from "@/assets/gulab-jamun.jpg";
+import sandwich from "@/assets/sandwich.jpg";
+import masalaChai from "@/assets/masala-chai.jpg";
+import iceCream from "@/assets/ice-cream.jpg";
 
 export type StallId = "pizza" | "burger" | "beverage" | "snack" | "dessert";
 
