@@ -6,6 +6,14 @@ import coldCoffee from "@/assets/cold-coffee.jpg";
 import icedTea from "@/assets/iced-tea.jpg";
 import fries from "@/assets/fries.jpg";
 import brownie from "@/assets/brownie.jpg";
+import dosa from "@/assets/dosa.jpg";
+import samosa from "@/assets/samosa.jpg";
+import pasta from "@/assets/pasta.jpg";
+import chocoShake from "@/assets/choco-shake.jpg";
+import gulabJamun from "@/assets/gulab-jamun.jpg";
+import sandwich from "@/assets/sandwich.jpg";
+import masalaChai from "@/assets/masala-chai.jpg";
+import iceCream from "@/assets/ice-cream.jpg";
 
 export type StallId = "pizza" | "burger" | "beverage" | "snack" | "dessert";
 
@@ -47,6 +55,18 @@ export const MENU: FoodItem[] = [
   { id: "f6", name: "Lemon Iced Tea", category: "Beverages", stall: "beverage", price: 50, image: icedTea, available: true },
   { id: "f7", name: "French Fries", category: "Snacks", stall: "snack", price: 60, image: fries, available: true },
   { id: "f8", name: "Brownie", category: "Desserts", stall: "dessert", price: 70, image: brownie, available: false },
+  { id: "f9", name: "Farmhouse Pizza", category: "Pizza", stall: "pizza", price: 180, image: margherita, available: true },
+  { id: "f10", name: "Corn Pizza Slice", category: "Pizza", stall: "pizza", price: 70, image: cheesePizza, available: true },
+  { id: "f11", name: "Cheese Burger", category: "Burgers", stall: "burger", price: 100, image: vegBurger, available: true },
+  { id: "f12", name: "Aloo Tikki Burger", category: "Burgers", stall: "burger", price: 70, image: paneerBurger, available: true },
+  { id: "f13", name: "Masala Dosa", category: "Snacks", stall: "snack", price: 90, image: dosa, available: true },
+  { id: "f14", name: "Samosa (2 pcs)", category: "Snacks", stall: "snack", price: 40, image: samosa, available: true },
+  { id: "f15", name: "Grilled Sandwich", category: "Snacks", stall: "snack", price: 75, image: sandwich, available: true },
+  { id: "f16", name: "White Sauce Pasta", category: "Snacks", stall: "snack", price: 110, image: pasta, available: true },
+  { id: "f17", name: "Chocolate Shake", category: "Beverages", stall: "beverage", price: 90, image: chocoShake, available: true },
+  { id: "f18", name: "Masala Chai", category: "Beverages", stall: "beverage", price: 25, image: masalaChai, available: true },
+  { id: "f19", name: "Gulab Jamun", category: "Desserts", stall: "dessert", price: 50, image: gulabJamun, available: true },
+  { id: "f20", name: "Choco Ice Cream", category: "Desserts", stall: "dessert", price: 60, image: iceCream, available: true },
 ];
 
 export const CATEGORIES: Category[] = ["Pizza", "Burgers", "Beverages", "Snacks", "Desserts"];
