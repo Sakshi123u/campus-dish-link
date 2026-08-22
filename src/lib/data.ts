@@ -84,6 +84,9 @@ export const DEMO_ACCOUNTS: { username: string; password: string; user: User }[]
   { username: "student", password: "student123", user: { username: "student", name: "Student", role: "student" } },
   { username: "pizza", password: "pizza123", user: { username: "pizza", name: "Pizza Staff", role: "staff", stall: "pizza" } },
   { username: "burger", password: "burger123", user: { username: "burger", name: "Burger Staff", role: "staff", stall: "burger" } },
+  { username: "beverage", password: "beverage123", user: { username: "beverage", name: "Beverage Staff", role: "staff", stall: "beverage" } },
+  { username: "snack", password: "snack123", user: { username: "snack", name: "Snack Staff", role: "staff", stall: "snack" } },
+  { username: "dessert", password: "dessert123", user: { username: "dessert", name: "Dessert Staff", role: "staff", stall: "dessert" } },
   { username: "admin", password: "admin123", user: { username: "admin", name: "Admin", role: "admin" } },
 ];
 
