@@ -121,6 +121,15 @@ export function AppLayout({
                 <ShoppingCart className="h-4 w-4" /> Cart ({cartCount})
               </Link>
             )}
+            <button
+              onClick={() => {
+                logout();
+                navigate({ to: "/" });
+              }}
+              className="inline-flex items-center gap-2 rounded-md border border-border px-3 py-1.5 text-sm text-destructive hover:bg-destructive/10 md:hidden"
+            >
+              <LogOut className="h-4 w-4" /> Logout
+            </button>
           </div>
         </header>
 
