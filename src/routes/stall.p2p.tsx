@@ -32,7 +32,7 @@ function StallP2P() {
   const { user } = useApp();
   const me = (user?.stall ?? "pizza") as StallId;
   const others = STALLS.filter((s) => s.id !== me);
-  const [peer, setPeer] = useState<StallId>(others[0].id);
+  const [peer, setPeer] = useState<StallId>(others[0]?.id ?? "burger");
   const [text, setText] = useState("");
   const { messages, send } = useP2P();
 
