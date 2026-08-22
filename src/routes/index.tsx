@@ -24,6 +24,9 @@ const DEMO = [
   ["Student", "student / student123"],
   ["Pizza Staff", "pizza / pizza123"],
   ["Burger Staff", "burger / burger123"],
+  ["Beverage Staff", "beverage / beverage123"],
+  ["Snack Staff", "snack / snack123"],
+  ["Dessert Staff", "dessert / dessert123"],
   ["Admin", "admin / admin123"],
 ];
 
