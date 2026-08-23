@@ -3,6 +3,7 @@ import { useApp, itemLabel, type SubStatus } from "@/lib/store";
 import type { StallId } from "@/lib/data";
 
 const NEXT: Record<SubStatus, { label: string; next: SubStatus } | null> = {
+  pending: null,
   new: { label: "Accept", next: "accepted" },
   accepted: { label: "Start Preparing", next: "preparing" },
   preparing: { label: "Mark Ready", next: "ready" },

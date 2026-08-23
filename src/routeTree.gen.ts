@@ -27,6 +27,7 @@ import { Route as StallNewRouteImport } from './routes/stall.new'
 import { Route as StallP2pRouteImport } from './routes/stall.p2p'
 import { Route as StallPreparingRouteImport } from './routes/stall.preparing'
 import { Route as StallReadyRouteImport } from './routes/stall.ready'
+import { Route as ApiPublicStallRpcRouteImport } from './routes/api/public/stall-rpc'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -118,6 +119,11 @@ const StallReadyRoute = StallReadyRouteImport.update({
   path: '/stall/ready',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicStallRpcRoute = ApiPublicStallRpcRouteImport.update({
+  id: '/api/public/stall-rpc',
+  path: '/api/public/stall-rpc',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -138,6 +144,7 @@ export interface FileRoutesByFullPath {
   '/stall/ready': typeof StallReadyRoute
   '/admin/': typeof AdminIndexRoute
   '/stall/': typeof StallIndexRoute
+  '/api/public/stall-rpc': typeof ApiPublicStallRpcRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -158,6 +165,7 @@ export interface FileRoutesByTo {
   '/stall/ready': typeof StallReadyRoute
   '/admin': typeof AdminIndexRoute
   '/stall': typeof StallIndexRoute
+  '/api/public/stall-rpc': typeof ApiPublicStallRpcRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -179,6 +187,7 @@ export interface FileRoutesById {
   '/stall/ready': typeof StallReadyRoute
   '/admin/': typeof AdminIndexRoute
   '/stall/': typeof StallIndexRoute
+  '/api/public/stall-rpc': typeof ApiPublicStallRpcRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -201,6 +210,7 @@ export interface FileRouteTypes {
     | '/stall/ready'
     | '/admin/'
     | '/stall/'
+    | '/api/public/stall-rpc'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -221,6 +231,7 @@ export interface FileRouteTypes {
     | '/stall/ready'
     | '/admin'
     | '/stall'
+    | '/api/public/stall-rpc'
   id:
     | '__root__'
     | '/'
@@ -241,6 +252,7 @@ export interface FileRouteTypes {
     | '/stall/ready'
     | '/admin/'
     | '/stall/'
+    | '/api/public/stall-rpc'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -262,6 +274,7 @@ export interface RootRouteChildren {
   StallReadyRoute: typeof StallReadyRoute
   AdminIndexRoute: typeof AdminIndexRoute
   StallIndexRoute: typeof StallIndexRoute
+  ApiPublicStallRpcRoute: typeof ApiPublicStallRpcRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -392,6 +405,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StallReadyRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/stall-rpc': {
+      id: '/api/public/stall-rpc'
+      path: '/api/public/stall-rpc'
+      fullPath: '/api/public/stall-rpc'
+      preLoaderRoute: typeof ApiPublicStallRpcRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -414,6 +434,7 @@ const rootRouteChildren: RootRouteChildren = {
   StallReadyRoute: StallReadyRoute,
   AdminIndexRoute: AdminIndexRoute,
   StallIndexRoute: StallIndexRoute,
+  ApiPublicStallRpcRoute: ApiPublicStallRpcRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

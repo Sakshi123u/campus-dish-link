@@ -24,6 +24,8 @@ export function StatusBadge({
 
 export function statusTone(status: string): keyof typeof TONES {
   switch (status) {
+    case "pending":
+      return "red";
     case "new":
     case "Order Placed":
       return "gray";
@@ -44,4 +46,5 @@ export function statusTone(status: string): keyof typeof TONES {
   }
 }
 
-export const statusLabel = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
+export const statusLabel = (s: string) =>
+  s === "pending" ? "Pending (Service Unavailable)" : s.charAt(0).toUpperCase() + s.slice(1);
