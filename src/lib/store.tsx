@@ -1,7 +1,8 @@
 import { createContext, useContext, useEffect, useMemo, useState, type ReactNode } from "react";
 import { DEMO_ACCOUNTS, MENU, type FoodItem, type StallId, type User } from "./data";
+import { drainQueue, dsLog, publishSubOrder } from "./ds";
 
-export type SubStatus = "new" | "accepted" | "preparing" | "ready" | "completed";
+export type SubStatus = "pending" | "new" | "accepted" | "preparing" | "ready" | "completed";
 export type OverallStatus = "Order Placed" | "Confirmed" | "Preparing" | "Ready" | "Collected";
 
 export type CartItem = { itemId: string; name: string; stall: StallId; price: number; qty: number };
@@ -47,7 +48,7 @@ export function overallStatus(order: Order): OverallStatus {
   if (s.every((x) => x === "completed")) return "Collected";
   if (s.every((x) => x === "ready" || x === "completed")) return "Ready";
   if (s.some((x) => x === "preparing")) return "Preparing";
-  if (s.some((x) => x !== "new")) return "Confirmed";
+  if (s.some((x) => x !== "new" && x !== "pending")) return "Confirmed";
   return "Order Placed";
 }
 
@@ -76,6 +77,40 @@ export function AppProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     if (loaded) localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   }, [state, loaded]);
+
+  // Coordinator dispatcher: drains the message queue via RPC, retries failed
+  // deliveries and moves delivered sub-orders from "pending" to "new".
+  useEffect(() => {
+    if (!loaded) return;
+    let running = false;
+    const tick = async () => {
+      if (running) return;
+      running = true;
+      try {
+        const { delivered } = await drainQueue();
+        if (delivered.length > 0) {
+          setState((s) => ({
+            ...s,
+            orders: s.orders.map((o) => ({
+              ...o,
+              subOrders: o.subOrders.map((sub) =>
+                delivered.includes(sub.id) && sub.status === "pending"
+                  ? { ...sub, status: "new" as SubStatus }
+                  : sub,
+              ),
+            })),
+          }));
+        }
+      } catch {
+        /* never crash the app on a delivery failure */
+      } finally {
+        running = false;
+      }
+    };
+    void tick();
+    const t = window.setInterval(() => void tick(), 3000);
+    return () => window.clearInterval(t);
+  }, [loaded]);
 
   const value: Ctx = useMemo(() => {
     const cartTotal = state.cart.reduce((sum, i) => sum + i.price * i.qty, 0);
@@ -119,7 +154,9 @@ export function AppProvider({ children }: { children: ReactNode }) {
           id: `${id}-${stall.toUpperCase()}`,
           stall,
           items: state.cart.filter((c) => c.stall === stall),
-          status: "new",
+          // Delivery is asynchronous: the sub-order stays PENDING until the
+          // message queue + RPC hand-off to the stall service succeeds.
+          status: "pending",
         }));
         const order: Order = {
           id,
@@ -129,6 +166,15 @@ export function AppProvider({ children }: { children: ReactNode }) {
           subOrders,
         };
         setState((s) => ({ ...s, orders: [order, ...s.orders], cart: [], counter: s.counter + 1 }));
+        dsLog("MOC", `Order Coordinator split ${id} into ${subOrders.length} sub-order(s)`);
+        for (const sub of subOrders) {
+          publishSubOrder({
+            orderId: id,
+            subId: sub.id,
+            stall: sub.stall,
+            items: sub.items.map((i) => ({ name: i.name, quantity: i.qty })),
+          });
+        }
         return order;
       },
       updateSubOrder: (orderId, subId, status) =>
